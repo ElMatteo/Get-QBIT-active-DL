@@ -15,20 +15,18 @@ if (isset($matches[1])) {
     if(!empty($result_ssh = shell_exec($getDl))) {
         echo "<br><br<br><h4>" . $result_ssh . "</h4><br>";
         $getvaleur1 = "curl https://YOUR_QBIT_LINK_OR_IP/api/v2/torrents/info --cookie '".$sidWithPrefix."' | jq '.[] | select(.state | contains(\"downloading\")) | .downloaded'";
-        if($valeur1 = shell_exec($getvaleur1)) {
-            // echo $valeur1 . "<br>";
-        }
-
         $getvaleur2 = "curl https://YOUR_QBIT_LINK_OR_IP/api/v2/torrents/info --cookie '".$sidWithPrefix."' | jq '.[] | select(.state | contains(\"downloading\")) | .amount_left'";
         if($valeur2 = shell_exec($getvaleur2)) {
-            // echo $valeur2 . "<br>";
+            // IF A MOVIE IS DOWNLOADING, DISPLAY THE TORRENT NAME AND % OF DOWNLOAD;
             $valeurDL = round(($valeur1*100)/($valeur1+$valeur2), 1) . "%" ;
             echo "<br><br<br><h1>" . $valeurDL . "</H1>";
         }
     } else {
+        // DISPLAY THIS MESSAGE WHEN NO MOVIE IS CURENTLY DOWNLOADING
         echo "No movie downloading.";
     }
 } else {
+    //ERROR
     echo "Error. Please contact administrator.";
 }
 
