@@ -2,7 +2,6 @@
 
 $commande_ssh = "curl -i --header 'Referer: https://YOUR_QBIT_LINK_OR_IP' --data 'username=USERNAME&password=PASSWORD' https://YOUR_QBIT_LINK_OR_IP/api/v2/auth/login | grep 'SID='";
 $result_ssh = shell_exec($commande_ssh);
-// echo $result_ssh;
 
 $pattern = '/SID=([^;]+)/';
 preg_match($pattern, $result_ssh, $matches);
