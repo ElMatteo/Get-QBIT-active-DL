@@ -14,6 +14,7 @@ if (isset($matches[1])) {
     if(!empty($result_ssh = shell_exec($getDl))) {
         echo "<br><br<br><h4>" . $result_ssh . "</h4><br>";
         $getvaleur1 = "curl https://YOUR_QBIT_LINK_OR_IP/api/v2/torrents/info --cookie '".$sidWithPrefix."' | jq '.[] | select(.state | contains(\"downloading\")) | .downloaded'";
+        $valeur1 = shell_exec($getvaleur1);
         $getvaleur2 = "curl https://YOUR_QBIT_LINK_OR_IP/api/v2/torrents/info --cookie '".$sidWithPrefix."' | jq '.[] | select(.state | contains(\"downloading\")) | .amount_left'";
         if($valeur2 = shell_exec($getvaleur2)) {
             // IF A MOVIE IS DOWNLOADING, DISPLAY THE TORRENT NAME AND % OF DOWNLOAD;
